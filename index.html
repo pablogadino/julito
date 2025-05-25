@@ -1,27 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First HTML Page</title>
+    <title>Revistas Educativas Solari</title>
     <style>
+        /* General Styles */
         body {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6; /* light, neutral background */
+            color: #333; /* default text color */
         }
-        h1 {
-            color: #333;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #5d9cec; /* a friendly blue */
+            padding: 1em 0;
+            color: #ffffff;
+            text-align: center; /* center the list */
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        header { /* Assuming hero section is <header> */
+            background-color: #a0d468; /* a vibrant green */
+            color: #ffffff;
+            padding: 4em 2em;
             text-align: center;
         }
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #555;
+        header h1 { /* Specific to hero h1 */
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        header p { /* Specific to hero p */
+            font-size: 1.2em;
+        }
+
+        /* Section Titles */
+        section h2 { /* Targets h2 in #magazine-showcase and #cta */
+            text-align: center;
+            color: #4a89dc; /* a darker blue for contrast */
+            margin-top: 2em;
+            margin-bottom: 1em;
+        }
+
+        /* Magazine Showcase */
+        #magazine-showcase {
+            padding: 2em;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        #magazine-showcase div {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5em;
+            margin: 1em;
+            width: 300px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        #magazine-showcase div h3 {
+            color: #e85649; /* an accent color like orange/red */
+            margin-top: 0;
+        }
+
+        /* Call-to-Action */
+        #cta {
+            background-color: #f0f0f0; /* slightly different from body */
+            padding: 2em;
+            text-align: center;
+        }
+        #cta input[type="email"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 250px;
+        }
+        #cta button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #ffce54; /* a warm yellow for the button */
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #cta button[type="submit"]:hover {
+            background-color: #f6bb42; /* darker yellow on hover */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1.5em 0;
+            margin-top: 2em;
+        }
+
+        /* Basic Responsiveness */
+        @media (max-width: 768px) {
+            #magazine-showcase {
+                flex-direction: column;
+                align-items: center;
+            }
+            #magazine-showcase div {
+                width: 80%; /* Or some other appropriate width */
+            }
+            nav ul li {
+                display: block; /* Stack nav items */
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Page!</h1>
-    <p>This is a sample paragraph for my new HTML page.</p>
+    <nav>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Revistas</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>Inspirando a Maestras Uruguayas de Primaria</h1>
+        <p>Descubre nuestras revistas llenas de recursos innovadores y prácticos para el aula.</p>
+    </header>
+    <section id="magazine-showcase">
+        <h2>Nuestras Revistas Destacadas</h2>
+        <div>
+            <h3>Aula Creativa</h3>
+            <p>Ideas y proyectos para un aprendizaje divertido.</p>
+        </div>
+        <div>
+            <h3>Pequeños Genios</h3>
+            <p>Ciencia y tecnología al alcance de los niños.</p>
+        </div>
+    </section>
+    <section id="cta">
+        <h2>¡Suscríbete a Nuestro Boletín!</h2>
+        <p>Recibe novedades, artículos y ofertas especiales directamente en tu correo.</p>
+        <form>
+            <input type="email" placeholder="Tu correo electrónico">
+            <button type="submit">Suscribirse</button>
+        </form>
+    </section>
+    <footer>
+        <p>© 2023 Revistas Educativas Solari. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
