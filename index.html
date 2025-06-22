@@ -1,27 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First HTML Page</title>
-    <style>
-        body {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #555;
-        }
-    </style>
+    <title>¡Aventura en Salto!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to My Page!</h1>
-    <p>This is a sample paragraph for my new HTML page.</p>
+    <header>
+        <h1>¡Explorando el Departamento de Salto!</h1>
+    </header>
+
+    <nav>
+        <a href="#ubicacion">¿Dónde está Salto?</a>
+        <a href="#simbolos">Símbolos</a>
+        <a href="#lugares">Lugares para visitar</a>
+        <a href="#naturaleza">Naturaleza</a>
+        <a href="#juegos">¡A Jugar!</a>
+    </nav>
+
+    <main>
+        <section id="bienvenida" class="seccion">
+            <h2>¡Hola, pequeños exploradores!</h2>
+            <img src="images/mapa_uruguay_salto.png" alt="Mapa de Uruguay destacando Salto"> <!-- Estilo general en CSS -->
+            <p>¡Bienvenidos a una emocionante aventura por el departamento de Salto! Salto es un lugar muy lindo en el país de Uruguay, que está en América del Sur. Está en el norte de Uruguay, lleno de cosas interesantes para descubrir. ¿Están listos para aprender y divertirse? ¡Vamos!</p>
+        </section>
+
+        <section id="ubicacion" class="seccion">
+            <h2>¿Dónde está Salto?</h2>
+            <img src="images/mapa_salto_detalle.png" alt="Mapa detallado de Salto">
+            <p>Salto es uno de los 19 departamentos que forman Uruguay. Si miras un mapa de Uruguay, Salto está arriba y a la izquierda, ¡como si fuera una esquina importante del país! Limita con otros departamentos uruguayos como Artigas, Paysandú y Tacuarembó.</p>
+            <p>Una cosa muy especial de Salto es que está a orillas del Río Uruguay. Este río es como una calle de agua muy grande que nos separa de Argentina. ¡Si cruzas el río, llegas a otro país!</p>
+            <p>Salto es conocido por su tierra fértil, donde crecen frutas deliciosas, ¡especialmente las naranjas! También es famoso por sus aguas termales, que son como piscinas naturales de agua calentita que vienen de abajo de la tierra.</p>
+        </section>
+
+        <section id="simbolos" class="seccion">
+            <h2>Símbolos de Salto</h2>
+            <p>Los símbolos son como dibujos especiales que nos cuentan cosas importantes de un lugar. ¡Salto tiene los suyos!</p>
+
+            <div class="simbolo-item">
+                <h3>La Bandera de Salto</h3>
+                <img src="images/bandera_salto.png" alt="Bandera de Salto">
+                <p>La bandera de Salto es muy linda. Tiene franjas de color azul y blanco. El azul nos recuerda al cielo y al importante Río Uruguay. El blanco significa la paz y la amistad. En una esquina, tiene un sol amarillo brillante, ¡igualito al sol de la bandera de Uruguay! Ese sol nos da energía y representa la vida.</p>
+            </div>
+
+            <div class="simbolo-item">
+                <h3>El Escudo de Salto</h3>
+                <img src="images/escudo_salto.png" alt="Escudo de Salto">
+                <p>El escudo de Salto es como una foto con muchos dibujos importantes. Tiene un ancla, que nos dice que Salto tiene un puerto en el río donde llegan y salen barcos. También tiene una naranja, ¡porque Salto es la tierra de las naranjas dulces! Arriba de todo, brilla el sol, que significa que Salto es un lugar lleno de luz y calor. A los costados, tiene laureles, que son hojitas que representan la victoria y la gloria.</p>
+            </div>
+        </section>
+
+        <section id="lugares" class="seccion">
+            <h2>Lugares para Visitar en Salto</h2>
+            <p>Salto tiene lugares increíbles para que los niños y sus familias se diviertan y aprendan. ¡Vamos a conocer algunos!</p>
+
+            <div class="lugar">
+                <h3>Termas del Daymán y Termas del Arapey</h3>
+                <img src="images/termas_dayman.png" alt="Niños jugando en las Termas del Daymán o Arapey">
+                <p>¿Te imaginas bañarte en piscinas con agua calentita que sale directamente de la tierra? ¡Eso son las termas! En Salto hay varias, como las Termas del Daymán y las Termas del Arapey. Son perfectas para jugar, nadar y relajarse. ¡Mucha gente va en invierno porque el agua calentita se siente genial!</p>
+            </div>
+
+            <div class="lugar">
+                <h3>Represa Hidroeléctrica de Salto Grande</h3>
+                <img src="images/represa_salto_grande.png" alt="Represa de Salto Grande vista desde lejos">
+                <p>La Represa de Salto Grande es una construcción gigante sobre el Río Uruguay. Es como una pared enorme que ayuda a controlar el agua del río y, ¡lo más importante!, usa la fuerza del agua para crear electricidad. Esta electricidad ilumina muchas casas en Uruguay y también en Argentina. ¡Es un trabajo en equipo entre dos países!</p>
+            </div>
+
+            <div class="lugar">
+                <h3>La Costanera de Salto</h3>
+                <img src="images/costanera_salto.png" alt="Familias paseando por la Costanera de Salto">
+                <p>La Costanera es un paseo muy bonito que va al lado del Río Uruguay. Es un lugar ideal para caminar, andar en bicicleta, jugar en los parques o simplemente sentarse a mirar el río y los barcos. Los atardeceres desde la Costanera son ¡espectaculares!</p>
+            </div>
+
+            <div class="lugar">
+                <h3>Parque del Lago</h3>
+                <p>Cerca de la Represa de Salto Grande, hay un parque muy grande llamado Parque del Lago. Tiene mucho pasto, árboles y un lago artificial donde se pueden hacer deportes acuáticos. Es un lugar perfecto para hacer un picnic y disfrutar de la naturaleza.</p>
+            </div>
+        </section>
+
+        <section id="naturaleza" class="seccion">
+            <h2>Naturaleza de Salto: Animales y Plantas</h2>
+            <p>Salto es un lugar con mucha naturaleza. ¡Hay animales y plantas muy interesantes!</p>
+
+            <div class="naturaleza-item">
+                <h3>Animales (Fauna)</h3>
+                <img src="images/fauna_salto.png" alt="Ilustración de carpincho, cardenal y mariposas de Salto">
+                <p>En los campos y cerca del río, podemos encontrar animales como el <strong>carpincho</strong>, que es el roedor más grande del mundo y le encanta estar cerca del agua. También hay muchos pájaros de colores, como el <strong>cardenal</strong> con su copete rojo, el <strong>benteveo</strong> que canta "bicho feo", y garzas elegantes. A veces, si tienes suerte, puedes ver zorritos o comadrejas. ¡Y no nos olvidemos de las mariposas que alegran los jardines!</p>
+            </div>
+
+            <div class="naturaleza-item">
+                <h3>Plantas (Flora)</h3>
+                <img src="images/flora_salto.png" alt="Ilustración de naranjos, ceibo y otras plantas nativas de Salto">
+                <p>¡Salto es famoso por sus <strong>naranjos</strong> y <strong>mandarinos</strong>! Los campos se llenan del aroma dulce de sus flores y luego de frutas jugosas. También hay árboles nativos muy importantes como el <strong>ceibo</strong>, que tiene una flor roja preciosa y es la flor nacional de Uruguay. Además, crecen otros árboles como ñandubay, algarrobos y palmeras que le dan un paisaje muy especial a la región.</p>
+            </div>
+        </section>
+
+        <section id="juegos" class="seccion">
+            <h2>¡A Jugar y Aprender!</h2>
+            <p>¡Demuestra cuánto aprendiste sobre Salto con estos divertidos juegos!</p>
+
+            <div class="juego-container">
+                <h3>Juego 1: ¿Qué es?</h3>
+                <p>Mira la imagen y elige el nombre correcto.</p>
+                <div id="juego-correspondencia">
+                    <img id="imagen-juego" src="" alt="Imagen del juego" style="max-width: 200px; margin-bottom: 10px;">
+                    <div id="opciones-juego" class="opciones-botones">
+                        <!-- Las opciones se cargarán aquí por JavaScript -->
+                    </div>
+                    <p id="resultado-juego" style="font-weight: bold; min-height: 20px;"></p>
+                    <button id="siguiente-pregunta" class="boton">Siguiente</button>
+                </div>
+            </div>
+
+            <!-- La Sopa de Letras ha sido eliminada -->
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© <span id="year"></span> Aventura en Salto - Hecho para pequeños exploradores</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

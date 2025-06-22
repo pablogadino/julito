@@ -1,0 +1,300 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Un color de fondo suave */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #4CAF50; /* Verde distintivo de Uruguay o Salto */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 5px solid #FFC107; /* Un toque de amarillo */
+    position: sticky; /* Hace que el header se quede fijo al hacer scroll */
+    top: 0; /* Se pega en la parte superior */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2em; /* Un poco más pequeño para que quepa mejor */
+    text-shadow: 2px 2px 4px #00000030;
+}
+
+nav {
+    background-color: #f8f9fa; /* Un fondo claro para la barra de navegación */
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 2px solid #dee2e6;
+    position: sticky; /* Hace que la nav se quede fija debajo del header */
+    top: 85px; /* Ajustar este valor según la altura del header. (Altura header h1 + padding + border) */
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que los enlaces se envuelvan en pantallas pequeñas */
+}
+
+nav a {
+    margin: 5px 15px;
+    text-decoration: none;
+    color: #007bff; /* Azul para los enlaces */
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover, nav a.active {
+    background-color: #007bff;
+    color: white;
+}
+
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    padding-top: 160px; /* Añade padding superior para que el contenido no quede oculto por el header y nav fijos */
+    /* text-align: center; Ya no es necesario globalmente, se maneja por sección */
+}
+
+main p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 15px; /* Espacio debajo de los párrafos */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9em;
+}
+
+/* Estilos para futuras secciones (se pueden agregar más) */
+.seccion {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 800px; /* Limita el ancho para mejor lectura */
+    text-align: left; /* Alineación izquierda para el contenido de las secciones */
+}
+
+.seccion h2 {
+    color: #4CAF50;
+    border-bottom: 2px solid #FFC107;
+    padding-bottom: 10px;
+    text-align: center; /* Títulos de sección centrados */
+    font-size: 1.8em; /* Tamaño de los títulos de sección */
+}
+
+.seccion p {
+    font-size: 1.1em; /* Ligeramente más pequeño que el p general para variar */
+    text-align: justify; /* Justificar el texto de los párrafos en las secciones */
+    margin-bottom: 15px;
+}
+
+.seccion img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+    display: block; /* Para centrar imágenes si es necesario */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos para botones (si se añaden más tarde) */
+.boton {
+    background-color: #FFC107; /* Amarillo */
+    color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.boton:hover {
+    background-color: #e0a800;
+}
+
+.lugar {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.lugar:last-child {
+    border-bottom: none; /* No poner borde al último elemento */
+}
+
+.lugar h3 {
+    color: #0056b3; /* Un azul más oscuro para subtítulos */
+    text-align: center;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+/* Estilos para items de Símbolos y Naturaleza */
+.simbolo-item, .naturaleza-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #eee; /* Borde más suave */
+}
+
+.simbolo-item:last-child, .naturaleza-item:last-child {
+    border-bottom: none;
+}
+
+.simbolo-item h3, .naturaleza-item h3 {
+    color: #0056b3; /* Mismo azul que .lugar h3 */
+    text-align: center;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.simbolo-item img, .naturaleza-item img {
+    max-width: 250px; /* Imágenes de símbolos y naturaleza */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 8px; /* Bordes redondeados también para estas imágenes */
+}
+
+
+/* Ajustes específicos para imágenes directas de .seccion (como los mapas) */
+.seccion > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 350px; /* Ligeramente más pequeñas que antes para consistencia */
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.lugar img { /* Imágenes dentro de 'lugar' */
+    max-width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+
+/* Media queries para responsividad */
+@media (max-width: 768px) { /* Ajuste para tablets y móviles grandes */
+    header h1 {
+        font-size: 2em;
+    }
+    nav {
+        top: 75px; /* Ajustar si la altura del header cambia */
+        padding-top: 10px;
+    }
+    nav a {
+        font-size: 1em;
+        margin: 5px 8px;
+        padding: 6px 10px;
+    }
+    main {
+        padding-top: 140px; /* Ajustar según la nueva altura de header+nav */
+    }
+    .seccion h2 {
+        font-size: 1.6em;
+    }
+    .lugar h3 {
+        font-size: 1.3em;
+    }
+}
+
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.6em;
+    }
+    nav {
+        top: 65px; /* Ajustar si la altura del header cambia */
+        flex-direction: column; /* Apilar enlaces de navegación */
+        align-items: center;
+    }
+    nav a {
+        margin: 8px 0; /* Más espacio vertical entre enlaces apilados */
+        display: block; /* Hacer que cada enlace ocupe el ancho */
+        width: 80%;
+        box-sizing: border-box;
+    }
+    main {
+        padding-top: 200px; /* Ajustar para la nav apilada */
+    }
+    main p, .seccion p { /* seccion p ya estaba definido antes, esto lo generaliza */
+        font-size: 1em;
+        text-align: left; /* En pantallas pequeñas, justificado puede ser difícil de leer */
+    }
+    .seccion {
+        margin: 10px;
+        padding: 15px;
+    }
+    .seccion > img, .simbolo-item img, .naturaleza-item img, .lugar img { /* Aplicar a todas las imágenes de contenido */
+        max-width: 90%; /* Hacerlas más responsivas en móviles */
+    }
+}
+
+/* Estilos para los juegos */
+.juego-container {
+    background-color: #e9f5e9; /* Un verde muy clarito de fondo */
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 2px solid #a8d5a8;
+}
+
+.juego-container h3 {
+    color: #2e7d32; /* Verde oscuro para títulos de juegos */
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.opciones-botones button {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.opciones-botones button:hover {
+    background-color: #388E3C;
+}
+
+.opciones-botones button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+#resultado-juego.correcto {
+    color: green;
+}
+
+#resultado-juego.incorrecto {
+    color: red;
+}
+
+/* Estilos para la Sopa de Letras eliminados */
+
+@media (max-width: 400px) { /* Ajustes adicionales para pantallas muy pequeñas */
+    /* Estilos de sopa de letras eliminados de aquí también */
+}
