@@ -33,6 +33,11 @@ nav {
     border-bottom: 2px solid #dee2e6;
     position: sticky; /* Hace que la nav se quede fija debajo del header */
     top: 85px; /* Ajustar este valor según la altura del header. (Altura header h1 + padding + border) */
+    /* Este valor podría necesitar ser ajustado si la altura del header cambia.
+       Una altura típica podría ser:
+       font-size (2.2em * ~16px/em = ~35px) + padding (20px*2=40px) + border-bottom (5px) = ~80px.
+       Así que top: 80px o un poco más para espacio.
+    */
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -59,14 +64,16 @@ nav a:hover, nav a.active {
 main {
     flex-grow: 1;
     padding: 20px;
-    padding-top: 160px; /* Añade padding superior para que el contenido no quede oculto por el header y nav fijos */
-    /* text-align: center; Ya no es necesario globalmente, se maneja por sección */
+    /* Ajustar padding-top para compensar header y nav fijos */
+    /* Altura header (~80px) + Altura nav (padding 10*2 + font-size ~18px + border ~2px = ~40px) = ~120px. */
+    /* Dar un poco más de margen: */
+    padding-top: 140px;
 }
 
-main p {
+main p { /* Estilo general para párrafos dentro de main, si no están en una sección */
     font-size: 1.2em;
     line-height: 1.6;
-    margin-bottom: 15px; /* Espacio debajo de los párrafos */
+    margin-bottom: 15px;
 }
 
 footer {
@@ -96,20 +103,22 @@ footer {
     font-size: 1.8em; /* Tamaño de los títulos de sección */
 }
 
-.seccion p {
-    font-size: 1.1em; /* Ligeramente más pequeño que el p general para variar */
+.seccion p { /* Párrafos dentro de una .seccion */
+    font-size: 1.1em;
     text-align: justify; /* Justificar el texto de los párrafos en las secciones */
+    line-height: 1.7; /* Un poco más de espacio entre líneas para justificado */
     margin-bottom: 15px;
 }
 
-.seccion img {
+.seccion img { /* Estilo base para imágenes directas dentro de .seccion (no las de .lugar, etc.) */
     max-width: 100%;
     height: auto;
     border-radius: 8px;
     margin-top: 10px;
-    display: block; /* Para centrar imágenes si es necesario */
+    display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 15px; /* Añadido para espacio después de la imagen */
 }
 
 /* Estilos para botones (si se añaden más tarde) */
@@ -121,6 +130,8 @@ footer {
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s;
+    border: none; /* Asegurar que no tenga borde por defecto */
+    cursor: pointer; /* Indicar que es clickeable */
 }
 
 .boton:hover {
@@ -198,8 +209,8 @@ footer {
         font-size: 2em;
     }
     nav {
-        top: 75px; /* Ajustar si la altura del header cambia */
-        padding-top: 10px;
+        top: 75px; /* Ajustar si la altura del header cambia (ej. 2em * 16px + 40px + 5px)*/
+        padding-top: 10px; /* El padding de nav no cambia tanto la altura total como el texto del header */
     }
     nav a {
         font-size: 1em;
@@ -207,12 +218,12 @@ footer {
         padding: 6px 10px;
     }
     main {
-        padding-top: 140px; /* Ajustar según la nueva altura de header+nav */
+        padding-top: 125px; /* Ajustar según la nueva altura de header+nav */
     }
     .seccion h2 {
         font-size: 1.6em;
     }
-    .lugar h3 {
+    .lugar h3, .simbolo-item h3, .naturaleza-item h3 { /* Aplicar a todos los h3 de items */
         font-size: 1.3em;
     }
 }
@@ -223,7 +234,8 @@ footer {
         font-size: 1.6em;
     }
     nav {
-        top: 65px; /* Ajustar si la altura del header cambia */
+        /* header h1 (1.6em * ~16px/em = ~26px) + padding (40px) + border (5px) = ~71px */
+        top: 70px;
         flex-direction: column; /* Apilar enlaces de navegación */
         align-items: center;
     }
@@ -234,24 +246,27 @@ footer {
         box-sizing: border-box;
     }
     main {
-        padding-top: 200px; /* Ajustar para la nav apilada */
+        /* Nav height: (enlaces apilados, digamos 5 enlaces * (1em font + 16px padding + 8px margin)) + padding nav + border nav */
+        /* Esto se vuelve más complejo. Es mejor probar y ajustar. */
+        /* Si nav tiene 5 items, cada uno con padding y margin, puede ser ~150-200px alto */
+        padding-top: 220px; /* Aumentar significativamente para la nav apilada */
     }
-    main p, .seccion p { /* seccion p ya estaba definido antes, esto lo generaliza */
+    main p, .seccion p {
         font-size: 1em;
-        text-align: left; /* En pantallas pequeñas, justificado puede ser difícil de leer */
+        text-align: left;
     }
     .seccion {
         margin: 10px;
         padding: 15px;
     }
-    .seccion > img, .simbolo-item img, .naturaleza-item img, .lugar img { /* Aplicar a todas las imágenes de contenido */
-        max-width: 90%; /* Hacerlas más responsivas en móviles */
+    .seccion > img, .simbolo-item img, .naturaleza-item img, .lugar img {
+        max-width: 90%;
     }
 }
 
 /* Estilos para los juegos */
 .juego-container {
-    background-color: #e9f5e9; /* Un verde muy clarito de fondo */
+    background-color: #e9f5e9;
     padding: 15px;
     margin-top: 20px;
     border-radius: 8px;
@@ -259,21 +274,31 @@ footer {
 }
 
 .juego-container h3 {
-    color: #2e7d32; /* Verde oscuro para títulos de juegos */
+    color: #2e7d32;
     text-align: center;
     margin-bottom: 15px;
 }
 
+.opciones-botones { /* Contenedor para los botones de opciones */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Espacio entre botones */
+    margin-bottom: 10px;
+}
+
 .opciones-botones button {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50;
     color: white;
     padding: 10px 15px;
-    margin: 5px;
+    /* margin: 5px; */ /* Eliminado para usar gap en el contenedor */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.3s;
+    flex-grow: 1; /* Para que los botones intenten ocupar espacio disponible */
+    min-width: 100px; /* Ancho mínimo para los botones */
 }
 
 .opciones-botones button:hover {
@@ -287,14 +312,20 @@ footer {
 
 #resultado-juego.correcto {
     color: green;
+    font-weight: bold;
 }
 
 #resultado-juego.incorrecto {
     color: red;
+    font-weight: bold;
 }
 
 /* Estilos para la Sopa de Letras eliminados */
 
-@media (max-width: 400px) { /* Ajustes adicionales para pantallas muy pequeñas */
+@media (max-width: 400px) {
+    .opciones-botones button {
+        min-width: 80px; /* Botones un poco más pequeños en pantallas muy chicas */
+        font-size: 0.9em;
+    }
     /* Estilos de sopa de letras eliminados de aquí también */
 }

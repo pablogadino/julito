@@ -8,6 +8,20 @@ document.getElementById('year').textContent = new Date().getFullYear();
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('nav a');
     const sections = document.querySelectorAll('main section');
+    const header = document.querySelector('header');
+    const nav = document.querySelector('nav');
+
+    // Función para calcular el offset dinámicamente
+    function getScrollOffset() {
+        let offset = 0;
+        if (header && getComputedStyle(header).position === 'sticky') {
+            offset += header.offsetHeight;
+        }
+        if (nav && getComputedStyle(nav).position === 'sticky') {
+            offset += nav.offsetHeight;
+        }
+        return offset + 20; // 20px de margen extra
+    }
 
     // Smooth scroll
     navLinks.forEach(link => {
@@ -17,12 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetSection = document.getElementById(targetId);
 
             if (targetSection) {
-                // Calcula la posición del elemento restando el offset del header/nav
-                // Esto es un valor aproximado, puede necesitar ajuste fino
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const navHeight = document.querySelector('nav').offsetHeight;
-                const offsetTop = targetSection.offsetTop - headerHeight - navHeight - 20; // 20px de margen extra
-
+                const offsetTop = targetSection.offsetTop - getScrollOffset();
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -34,30 +43,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Destacar enlace activo al hacer scroll
     function changeActiveLink() {
         let index = sections.length;
+        const scrollPosition = window.scrollY + getScrollOffset() + 20; // +20 para activar un poco antes
 
-        while(--index && window.scrollY + 150 < sections[index].offsetTop) {} // 150 es un offset para activar un poco antes
+        while(--index && scrollPosition < sections[index].offsetTop) {}
 
         navLinks.forEach((link) => link.classList.remove('active'));
 
-        // Asegurarse de que el índice es válido antes de intentar acceder a navLinks[index]
-        if (index >= 0 && index < navLinks.length) {
-            // Comprobar que el href del enlace coincida con el id de la sección actual
-            // Esto es importante porque la sección "bienvenida" no está en la nav
+        if (index >= 0 && sections[index]) { // Asegurarse que sections[index] existe
             const currentSectionId = sections[index].id;
             const activeNavLink = document.querySelector(`nav a[href="#${currentSectionId}"]`);
             if (activeNavLink) {
                 activeNavLink.classList.add('active');
-            } else if (currentSectionId === "bienvenida" && navLinks.length > 0) {
-                // Si estamos en bienvenida y no hay un enlace directo, no activar ninguno
-                // o activar el primero si se desea (ej. "Ubicación")
-                // Por ahora, no se activa ninguno para "bienvenida"
             }
+        } else if (navLinks.length > 0 && window.scrollY < sections[0].offsetTop - getScrollOffset()) {
+            // Si estamos por encima de la primera sección (ej. en Bienvenida que no está en nav)
+            // no activar ninguno, o el primero si se prefiere. Por ahora ninguno.
         }
     }
 
-    // Inicializar el enlace activo y actualizarlo al hacer scroll
-    changeActiveLink(); // Llamar una vez para el estado inicial
-    window.addEventListener('scroll', changeActiveLink);
+    // Inicializar el enlace activo y actualizarlo al hacer scroll y resize (por si cambia el offset)
+    if (sections.length > 0 && navLinks.length > 0) { // Solo si hay secciones y links de nav
+        changeActiveLink();
+        window.addEventListener('scroll', changeActiveLink);
+        window.addEventListener('resize', changeActiveLink); // Para recalcular offsets si el layout cambia
+    }
 
     // Lógica para el Juego de Correspondencia
     const juegoData = [
@@ -65,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { imagen: "images/represa_salto_grande.png", opciones: ["Costanera", "Represa", "Naranja"], correcta: "Represa" },
         { imagen: "images/bandera_salto.png", opciones: ["Escudo", "Bandera", "Mapa"], correcta: "Bandera" },
         { imagen: "images/escudo_salto.png", opciones: ["Escudo", "Carpincho", "Ceibo"], correcta: "Escudo" },
-        { imagen: "images/fauna_salto.png", opciones: ["Flora", "Fauna", "Termas"], correcta: "Fauna" }, // Placeholder genérico
-        { imagen: "images/flora_salto.png", opciones: ["Flora", "Fauna", "Río"], correcta: "Flora" }  // Placeholder genérico
+        { imagen: "images/fauna_salto.png", opciones: ["Flora", "Fauna", "Termas"], correcta: "Fauna" },
+        { imagen: "images/flora_salto.png", opciones: ["Flora", "Fauna", "Río"], correcta: "Flora" }
     ];
 
     let preguntaActualIndex = 0;
@@ -76,15 +85,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const siguientePreguntaBtn = document.getElementById('siguiente-pregunta');
 
     function cargarPregunta() {
+        if (!imgJuegoEl || !opcionesJuegoEl || !resultadoJuegoEl || !siguientePreguntaBtn) {
+            console.warn("Elementos del juego de correspondencia no encontrados. El juego no funcionará.");
+            return;
+        }
+
         const pregunta = juegoData[preguntaActualIndex];
         imgJuegoEl.src = pregunta.imagen;
-        imgJuegoEl.alt = `Imagen de ${pregunta.correcta}`; // Mejorar accesibilidad
-        opcionesJuegoEl.innerHTML = ''; // Limpiar opciones anteriores
+        imgJuegoEl.alt = `Imagen de ${pregunta.correcta}`;
+        opcionesJuegoEl.innerHTML = '';
         resultadoJuegoEl.textContent = '';
         resultadoJuegoEl.className = '';
-        siguientePreguntaBtn.style.display = 'none'; // Ocultar botón "Siguiente"
+        siguientePreguntaBtn.style.display = 'none';
 
-        // Mezclar opciones para que no siempre estén en el mismo orden
         const opcionesMezcladas = [...pregunta.opciones].sort(() => Math.random() - 0.5);
 
         opcionesMezcladas.forEach(opcion => {
@@ -94,34 +107,35 @@ document.addEventListener('DOMContentLoaded', () => {
             opcionesJuegoEl.appendChild(boton);
         });
 
-        // Habilitar botones de opción
         opcionesJuegoEl.querySelectorAll('button').forEach(b => b.disabled = false);
     }
 
     function verificarRespuesta(seleccionada, correcta) {
-        opcionesJuegoEl.querySelectorAll('button').forEach(b => b.disabled = true); // Deshabilitar botones
+        opcionesJuegoEl.querySelectorAll('button').forEach(b => b.disabled = true);
         if (seleccionada === correcta) {
             resultadoJuegoEl.textContent = '¡Correcto! 🎉';
             resultadoJuegoEl.className = 'correcto';
         } else {
-            resultadoJuegoEl.textContent = `Incorrecto. Era ${correcta}. 🙁`;
+            resultadoJuegoEl.textContent = `Incorrecto. La respuesta correcta es ${correcta}. 🙁`;
             resultadoJuegoEl.className = 'incorrecto';
         }
-        siguientePreguntaBtn.style.display = 'inline-block'; // Mostrar botón "Siguiente"
+        siguientePreguntaBtn.style.display = 'inline-block';
     }
 
-    siguientePreguntaBtn.addEventListener('click', () => {
-        preguntaActualIndex++;
-        if (preguntaActualIndex >= juegoData.length) {
-            preguntaActualIndex = 0; // Reiniciar el juego o mostrar mensaje final
-            resultadoJuegoEl.textContent = "¡Juego completado! Puedes empezar de nuevo.";
-            // Opcional: esperar un poco antes de cargar la primera pregunta de nuevo
-        }
-        cargarPregunta();
-    });
+    if (siguientePreguntaBtn) {
+        siguientePreguntaBtn.addEventListener('click', () => {
+            preguntaActualIndex++;
+            if (preguntaActualIndex >= juegoData.length) {
+                preguntaActualIndex = 0;
+                if(resultadoJuegoEl) resultadoJuegoEl.textContent = "¡Juego completado! Puedes empezar de nuevo o explorar más.";
+            }
+            cargarPregunta();
+        });
+    }
 
-    // Cargar la primera pregunta del juego de correspondencia
-    if (imgJuegoEl) { // Asegurarse que el elemento existe
+
+    // Cargar la primera pregunta del juego de correspondencia si los elementos existen
+    if (imgJuegoEl && opcionesJuegoEl && resultadoJuegoEl && siguientePreguntaBtn) {
        cargarPregunta();
     }
 
