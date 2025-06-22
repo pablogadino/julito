@@ -1,0 +1,272 @@
+/* Estilos generales para Artigas - similares a Salto para consistencia, con algunos toques distintivos */
+body {
+    font-family: 'Verdana', sans-serif; /* Fuente un poco diferente */
+    margin: 0;
+    padding: 0;
+    background-color: #e8f5e9; /* Un verde muy pálido */
+    color: #212121; /* Negro un poco más suave */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #388e3c; /* Verde principal un poco más oscuro */
+    color: white;
+    padding: 18px 0; /* Ligeramente menos padding */
+    text-align: center;
+    border-bottom: 5px solid #ffb300; /* Amarillo dorado */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.1em;
+    text-shadow: 1px 1px 3px #00000040;
+}
+
+.volver-mapa {
+    display: inline-block;
+    background-color: #ffb300;
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+.volver-mapa:hover {
+    background-color: #e69500;
+}
+
+nav {
+    background-color: #f1f8e9; /* Verde aún más pálido para nav */
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 2px solid #c8e6c9;
+    position: sticky;
+    top: 78px; /* Ajustar según altura del header (ej. 2.1em * ~16px + 18*2 + 5px ) */
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav a {
+    margin: 5px 12px; /* Un poco menos de margen */
+    text-decoration: none;
+    color: #1b5e20; /* Verde oscuro para enlaces */
+    font-weight: bold;
+    font-size: 1.05em;
+    padding: 7px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover, nav a.active {
+    background-color: #2e7d32; /* Verde más oscuro al pasar/activo */
+    color: white;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    padding-top: 130px; /* Ajustar para header y nav fijos (ej. ~78px + ~40px) */
+}
+
+main p {
+    font-size: 1.1em; /* Ligeramente más pequeño que Salto */
+    line-height: 1.65;
+    margin-bottom: 14px;
+}
+
+footer {
+    background-color: #212121; /* Gris muy oscuro */
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 0.85em;
+}
+
+.seccion {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.08);
+    max-width: 850px;
+    text-align: left;
+}
+
+.seccion h2 {
+    color: #388e3c;
+    border-bottom: 2px solid #ffb300;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 1.7em;
+}
+
+.seccion p {
+    font-size: 1.05em;
+    text-align: justify;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.seccion img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px; /* Bordes un poco menos redondeados */
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    border: 1px solid #ddd; /* Borde sutil a las imágenes */
+}
+
+.boton {
+    background-color: #ffb300; /* Amarillo dorado */
+    color: #212121;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+.boton:hover {
+    background-color: #e69500; /* Amarillo más oscuro */
+}
+
+.lugar, .simbolo-item, .naturaleza-item {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #c8e6c9; /* Verde pálido para separadores */
+}
+.lugar:last-child, .simbolo-item:last-child, .naturaleza-item:last-child {
+    border-bottom: none;
+}
+
+.lugar h3, .simbolo-item h3, .naturaleza-item h3 {
+    color: #1b5e20; /* Verde oscuro para subtítulos */
+    text-align: center;
+    font-size: 1.35em;
+    margin-bottom: 10px;
+}
+
+.seccion > img { /* Imágenes principales de sección (mapas) */
+    max-width: 380px;
+}
+.lugar img, .simbolo-item img, .naturaleza-item img {
+    max-width: 320px; /* Imágenes dentro de items un poco más pequeñas */
+}
+
+/* Estilos para el Juego de Rompecabezas */
+.juego-container {
+    background-color: #e0f2f1; /* Verde azulado muy pálido */
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 8px;
+    border: 2px solid #a7d7c5; /* Verde azulado más oscuro */
+}
+
+.juego-container h3 {
+    color: #00695c; /* Verde azulado oscuro para título del juego */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#puzzle-container {
+    display: grid;
+    /* Se definirá por JS, ej: grid-template-columns: repeat(3, 100px); */
+    /* grid-template-rows: repeat(2, 100px); */
+    width: 300px; /* Ancho total del rompecabezas (ej. 3 piezas * 100px) */
+    height: 200px; /* Alto total (ej. 2 piezas * 100px) */
+    border: 2px solid #004d40; /* Borde oscuro para el área del puzzle */
+    margin: 0 auto 20px auto; /* Centrar y espaciado inferior */
+    background-color: #f0f0f0; /* Fondo para el área donde se armará */
+    position: relative; /* Para posicionar piezas absolutamente si es necesario */
+}
+
+#puzzle-source {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #c8e6c9; /* Fondo para la fuente de piezas */
+    border-radius: 5px;
+    min-height: 100px; /* Para que tenga algo de altura si las piezas son pocas */
+}
+
+.puzzle-piece {
+    /* width: 100px; height: 100px; Se definirá por JS */
+    background-size: 300px 200px; /* Tamaño total de la imagen original */
+    border: 1px solid #777;
+    cursor: grab;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+.puzzle-piece:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+    z-index: 100; /* Para que esté por encima al arrastrar */
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+}
+
+.puzzle-slot {
+    /* width: 100px; height: 100px; Se definirá por JS */
+    border: 1px dashed #999;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.puzzle-slot.over { /* Cuando una pieza está sobre un slot válido */
+    background-color: #b2dfdb; /* Resaltar slot */
+}
+
+
+#resultado-puzzle.correcto { color: #1b5e20; font-weight: bold; }
+#resultado-puzzle.incorrecto { color: #c62828; font-weight: bold; } /* Aunque no habrá incorrecto en puzzle */
+
+/* Responsividad */
+@media (max-width: 768px) {
+    header h1 { font-size: 1.9em; }
+    nav { top: 70px; /* Ajustar */ }
+    main { padding-top: 120px; /* Ajustar */ }
+    .seccion h2 { font-size: 1.5em; }
+    .lugar h3, .simbolo-item h3, .naturaleza-item h3 { font-size: 1.25em; }
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 1.7em; }
+    .volver-mapa { font-size: 0.9em; padding: 6px 10px; margin-top: 8px;}
+    nav { top: 65px; /* Ajustar */ flex-direction: column; align-items: center; }
+    nav a { width: 70%; box-sizing: border-box; margin: 6px 0; }
+    main { padding-top: 230px; /* Aumentar más por nav apilada */ }
+    main p, .seccion p { font-size: 1em; text-align: left; }
+    .seccion > img, .lugar img, .simbolo-item img, .naturaleza-item img { max-width: 90%; }
+
+    #puzzle-container { width: 240px; height: 160px; /* Reducir para móviles (ej. 3x2 de 80x80) */ }
+    /* .puzzle-piece, .puzzle-slot { width: 80px; height: 80px; } */ /* Se ajustará en JS */
+    #puzzle-container, #puzzle-source {
+        width: 95%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 400px) {
+    header h1 { font-size: 1.5em; }
+    nav { top: 60px; }
+    main { padding-top: 210px; }
+
+    #puzzle-container { width: 180px; height: 120px; /* Reducir más (ej. 3x2 de 60x60) */ }
+    /* .puzzle-piece, .puzzle-slot { width: 60px; height: 60px; } */ /* Se ajustará en JS */
+}
