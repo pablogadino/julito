@@ -53,20 +53,71 @@
     </footer>
     <script>
         document.getElementById('year-mapa').textContent = new Date().getFullYear();
-        // Script para hacer clickeables los departamentos del SVG si es necesario
-        // o para manejar interacciones adicionales con el mapa.
+
+        const departamentos = {
+            "artigas": "artigas/index.html",
+            "canelones": "canelones/index.html",
+            "cerro_largo": "cerro_largo/index.html", // Asumiendo nombre de carpeta "cerro_largo"
+            "colonia": "colonia/index.html",
+            "durazno": "durazno/index.html",
+            "flores": "flores/index.html",
+            "florida": "florida/index.html",
+            "lavalleja": "lavalleja/index.html",
+            "maldonado": "maldonado/index.html",
+            "montevideo": "montevideo/index.html",
+            "paysandu": "paysandu/index.html", // Sin tilde para el ID/carpeta
+            "rio_negro": "rio_negro/index.html", // Asumiendo nombre de carpeta "rio_negro"
+            "rivera": "rivera/index.html",
+            "rocha": "rocha/index.html",
+            "salto": "salto/index.html",
+            "san_jose": "san_jose/index.html", // Asumiendo nombre de carpeta "san_jose"
+            "soriano": "soriano/index.html",
+            "tacuarembo": "tacuarembo/index.html", // Sin tilde
+            "treinta_y_tres": "treinta_y_tres/index.html" // Asumiendo nombre de carpeta "treinta_y_tres"
+        };
+
+        const mapaSvgObject = document.getElementById('mapa-uruguay-svg');
+
+        mapaSvgObject.addEventListener('load', function() {
+            const svgDoc = mapaSvgObject.contentDocument;
+            if (svgDoc) {
+                for (const idDepto in departamentos) {
+                    const deptoElement = svgDoc.getElementById(idDepto);
+                    if (deptoElement) {
+                        deptoElement.style.cursor = 'pointer';
+                        deptoElement.addEventListener('click', function() {
+                            // Verificar si la carpeta existe antes de redirigir sería más robusto,
+                            // pero por ahora simplemente redirigimos.
+                            // Las carpetas para Artigas y Salto existen. Para las demás,
+                            // se crearán progresivamente.
+                            window.location.href = departamentos[idDepto];
+                        });
+                    } else {
+                        console.warn(`Elemento SVG para el departamento '${idDepto}' no encontrado.`);
+                    }
+                }
+            } else {
+                console.error("No se pudo acceder al contentDocument del SVG.");
+            }
+        });
+
+        // El script anterior que iteraba sobre '.departamento-link' ya no es necesario
+        // para la funcionalidad principal del mapa SVG, ya que los clics se manejan arriba.
+        // Si se mantenía para otros links en la página, se podría conservar esa parte,
+        // pero para el mapa SVG, la nueva lógica es la que aplica.
+        // Por simplicidad, lo comento/elimino en el contexto de esta tarea.
+        /*
         document.querySelectorAll('.departamento-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 const nombreDepto = this.dataset.nombre;
                 console.log("Clic en: " + nombreDepto);
-                // Si el enlace es a una sección "próximamente", podríamos prevenir el default
-                // y mostrar una alerta, o simplemente dejar que lleve a la página placeholder.
-                if (this.href.endsWith('#') || this.querySelector('.proximamente')) { // Ejemplo de condición
-                    // e.preventDefault();
+                if (this.href.endsWith('#') || this.classList.contains('proximamente')) {
+                    // e.preventDefault(); // Descomentar si se quiere prevenir navegación a páginas "próximamente"
                     // alert(nombreDepto + " estará disponible pronto!");
                 }
             });
         });
+        */
     </script>
 </body>
 </html>
